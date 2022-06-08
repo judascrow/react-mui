@@ -12,7 +12,7 @@ export const MenuLists = [
     icon: <PersonIcon />,
   },
   {
-    name: "Setting",
+    name: "Settings",
     icon: <SettingsIcon />,
   },
 ];

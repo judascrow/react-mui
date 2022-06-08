@@ -1,43 +1,19 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import { Box, Toolbar, Typography } from "@mui/material";
+import { Box, Toolbar, Typography, Paper } from "@mui/material";
 
-import Appbar from "./Appbar";
-import Sidebar from "./Sidebar";
-
-const drawerWidth = 240;
-
-const Layouts = (props) => {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    console.log("click");
-    setMobileOpen(!mobileOpen);
-  };
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
+const Content = ({ drawerWidth }) => {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Appbar handleDrawerToggle={handleDrawerToggle} />
-
-      <Sidebar
-        mobileOpen={mobileOpen}
-        handleDrawerToggle={handleDrawerToggle}
-        container={container}
-      />
-
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        <Toolbar />
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        p: 3,
+        width: { sm: `calc(100% - ${drawerWidth}px)` },
+        backgroundColor: "#f0f2f5",
+        height: "100vh",
+      }}
+    >
+      <Toolbar />
+      <Paper elevation={0} sx={{ p: 3 }} variant="outlined">
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
@@ -67,17 +43,9 @@ const Layouts = (props) => {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </Box>
+      </Paper>
     </Box>
   );
 };
 
-Layouts.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
-export default Layouts;
+export default Content;

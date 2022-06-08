@@ -10,9 +10,7 @@ import {
   Toolbar,
 } from "@mui/material";
 
-import { MenuLists } from "../../data/Menu";
-
-const drawerWidth = 240;
+import { MenuLists } from "./MenuLists";
 
 const MenuDrawer = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -31,7 +29,7 @@ const MenuDrawer = () => {
               selected={selectedIndex === index}
               onClick={(event) => handleListItemClick(event, index)}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ minWidth: "48px" }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
@@ -41,7 +39,12 @@ const MenuDrawer = () => {
   );
 };
 
-const Sidebar = ({ mobileOpen, handleDrawerToggle, container }) => {
+const Sidebar = ({
+  mobileOpen,
+  handleDrawerToggle,
+  container,
+  drawerWidth,
+}) => {
   return (
     <Box
       component="nav"

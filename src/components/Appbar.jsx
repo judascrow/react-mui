@@ -51,7 +51,6 @@ const Appbar = ({ handleDrawerToggle }) => {
             href="#"
             sx={{
               mr: 2,
-              // display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
@@ -65,6 +64,8 @@ const Appbar = ({ handleDrawerToggle }) => {
           <Stack direction="row" spacing={2}>
             <Button
               color="inherit"
+              size="large"
+              sx={{ fontSize: 16 }}
               startIcon={<AccountCircleIcon />}
               aria-label="account of current user"
               aria-controls="menu-appbar"

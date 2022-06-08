@@ -1,5 +1,5 @@
 import CssBaseline from "@mui/material/CssBaseline";
-import Layouts from "./components/Layouts/Layouts";
+import Layouts from "./components/Layouts";
 
 function App() {
   return (
