@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   Drawer,
@@ -8,28 +9,37 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+
+import { MenuLists } from "../../data/Menu";
 
 const drawerWidth = 240;
 
-const drawer = (
-  <div>
-    <Toolbar />
-    <List>
-      {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-  </div>
-);
+const MenuDrawer = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
+  return (
+    <div>
+      <Toolbar />
+      <List>
+        {MenuLists.map((item, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton
+              selected={selectedIndex === index}
+              onClick={(event) => handleListItemClick(event, index)}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+};
 
 const Sidebar = ({ mobileOpen, handleDrawerToggle, container }) => {
   return (
@@ -51,7 +61,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle, container }) => {
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
       >
-        {drawer}
+        {<MenuDrawer />}
       </Drawer>
       <Drawer
         variant="permanent"
@@ -61,7 +71,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle, container }) => {
         }}
         open
       >
-        {drawer}
+        {<MenuDrawer />}
       </Drawer>
     </Box>
   );
